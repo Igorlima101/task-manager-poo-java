@@ -38,4 +38,16 @@ public class UserServices {
             System.out.println(user);
         }
     }
+
+    public static User findUserByName(ArrayList<User>arrayUser){
+        String name = Input.prompt("Enter a name to search");
+        for(User user: arrayUser){
+            if(name.equalsIgnoreCase(user.getName())){
+                System.out.println("User found! {" + user.getName() + "}");
+                return user;
+            }
+        }
+        return null;
+    }
 }
+
