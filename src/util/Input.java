@@ -9,4 +9,11 @@ public class Input {
         System.out.println(message);
         return scan.nextLine();
     }
+
+    public static int promptInt(String message){
+        System.out.println(message);
+        int num = scan.nextInt();
+        scan.nextLine();
+        return num;
+    }
 }
