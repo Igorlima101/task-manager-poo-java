@@ -60,4 +60,15 @@ public class Task {
         this.dateTime = dateTime;
         this.taskMark = taskMark;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", dateTime=" + dateTime +
+                ", taskMark=" + taskMark +
+                ", user=" + user.getName() +
+                '}';
+    }
 }

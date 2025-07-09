@@ -1,4 +1,6 @@
+import model.Task;
 import model.User;
+import services.TaskServices;
 import services.UserServices;
 
 import java.util.ArrayList;
@@ -8,6 +10,9 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
+        ArrayList<User> arrayUser = new ArrayList<>();
+        ArrayList<Task> arrayTask = new ArrayList<>();
+        UserServices.menu(arrayUser, arrayTask);
 
     }
 }

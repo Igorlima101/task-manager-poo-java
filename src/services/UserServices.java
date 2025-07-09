@@ -1,5 +1,6 @@
 package services;
 
+import model.Task;
 import model.User;
 import util.Input;
 import util.UserRole;
@@ -48,6 +49,28 @@ public class UserServices {
             }
         }
         return null;
+    }
+
+    public static void menu(ArrayList<User>arrayUser, ArrayList<Task> arrayTask){
+        while(true){
+            System.out.println("1 -- create user");
+            System.out.println("2 -- show all users");
+            System.out.println("3 -- create task");
+            System.out.println("4 -- show all task");
+            System.out.println("5 -- Exit");
+            int input = Input.promptInt("choose an a option");
+
+        switch (input){
+            case 1 -> createUser(arrayUser);
+            case 2 -> showAllUsers(arrayUser);
+            case 3 -> TaskServices.createTask(arrayTask, arrayUser);
+            case 4 -> TaskServices.showAllTasks(arrayTask);
+            case 5 -> System.exit(0);
+            default -> System.out.println("Option is invalid");
+        }
+
+
+        }
     }
 }
 
