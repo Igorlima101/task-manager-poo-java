@@ -42,10 +42,8 @@ public class TaskServices {
                 task.setTaskMark(menuStatusChoose());
                 return;
             }
-            else{
-                System.out.println("Error: Task not found");
-            }
         }
+        System.out.println("Error: Task not found");
     }
 
     public static TaskMark menuStatusChoose(){

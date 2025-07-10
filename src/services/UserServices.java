@@ -16,24 +16,8 @@ public class UserServices {
             System.out.println("Error: one or more fields are empty");
             return;
         }
-        UserRole role = null;
 
-        System.out.println("1 -- Dev");
-        System.out.println("2 -- QA");
-        System.out.println("3 -- PO");
-        System.out.println("4 -- Scrum Master");
-        System.out.println("5 -- Exit");
-        int value = Input.promptInt("Choose an a option");
-
-        switch(value){
-            case 1 -> role = UserRole.DEV;
-            case 2 -> role = UserRole.QA;
-            case 3 -> role = UserRole.PO;
-            case 4 -> role = UserRole.SCRUM_MASTER;
-            case 5 -> System.exit(0);
-            default -> System.out.println("Option is invalid");
-        }
-
+        UserRole role = userRoleOption();
         User user = new User(name, description, role);
         arrayUser.add(user);
     }
@@ -71,13 +55,42 @@ public class UserServices {
             case 3 -> TaskServices.createTask(arrayTask, arrayUser);
             case 4 -> TaskServices.showAllTasks(arrayTask);
             case 5 -> TaskServices.changeStatus(arrayTask);
-            case 6 -> System.exit(0);
+            case 6 -> {
+                System.out.println("Exiting...");
+                return;
+            }
             default -> System.out.println("Option is invalid");
         }
-
-
-
         }
+    }
+
+    public static UserRole userRoleOption(){
+        UserRole role = null;
+        while(role == null) {
+            System.out.println("1 -- Dev");
+            System.out.println("2 -- QA");
+            System.out.println("3 -- PO");
+            System.out.println("4 -- Scrum Master");
+            System.out.println("5 -- Exit");
+            int value = Input.promptInt("Choose an a option");
+
+            switch (value) {
+                case 1 -> {
+                    return role = UserRole.DEV;
+                }
+                case 2 -> {
+                    return role = UserRole.QA;
+                }
+                case 3 -> {
+                    return role = UserRole.PO;
+                }
+                case 4 -> {
+                    return role = UserRole.SCRUM_MASTER;
+                }
+                default -> System.out.println("Option is invalid");
+            }
+        }
+        return null;
     }
 }
 
