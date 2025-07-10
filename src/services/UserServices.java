@@ -12,6 +12,10 @@ public class UserServices {
     public static void createUser(ArrayList<User>arrayUser){
         String name = Input.prompt("Enter a username");
         String description = Input.prompt("Enter a email");
+        if(name.isEmpty() || description.isEmpty()){
+            System.out.println("Error, one or more fields are empty");
+            return;
+        }
         UserRole role = null;
 
         System.out.println("1 -- Dev");
@@ -68,6 +72,7 @@ public class UserServices {
             case 5 -> System.exit(0);
             default -> System.out.println("Option is invalid");
         }
+
 
 
         }

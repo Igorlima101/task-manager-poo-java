@@ -13,6 +13,10 @@ public class TaskServices {
     public static void createTask(ArrayList<Task> arrayTask, ArrayList<User> arrayUser){
         String title = Input.prompt("Enter a task title");
         String description = Input.prompt("Enter a task description");
+        if(title.isEmpty() || description.isEmpty()){
+            System.out.println("Error, one or more fields are empty");
+            return;
+        }
         TaskMark taskMark = null;
 
         System.out.println("1 -- Completed");
@@ -44,5 +48,6 @@ public class TaskServices {
             System.out.println(task);
         }
     }
+
 
 }
