@@ -14,32 +14,18 @@ public class TaskServices {
         String title = Input.prompt("Enter a task title");
         String description = Input.prompt("Enter a task description");
         if(title.isEmpty() || description.isEmpty()){
-            System.out.println("Error, one or more fields are empty");
+            System.out.println("Error: one or more fields are empty");
             return;
         }
-        TaskMark taskMark = null;
 
-        System.out.println("1 -- Completed");
-        System.out.println("2 -- In progress");
-        System.out.println("3 -- Pending");
-        System.out.println("4 -- back to menu");
-        int value = Input.promptInt("Choose an a option");
-
-        switch(value){
-            case 1 -> taskMark = TaskMark.COMPLETED;
-            case 2 -> taskMark = TaskMark.IN_PROGRESS;
-            case 3 -> taskMark = TaskMark.PENDING;
-            case 4 -> UserServices.menu(arrayUser, arrayTask);
-            default -> System.out.println("Option is invalid");
-        }
-
+        TaskMark mark = menuStatusChoose();
         User user = UserServices.findUserByName(arrayUser);
         if(user == null){
-            System.out.println("Error, user is null");
+            System.out.println("Error: user is null");
             return;
         }
 
-        Task task = new Task(user, title, description, LocalDateTime.now(), taskMark);
+        Task task = new Task(user, title, description, LocalDateTime.now(), mark);
         arrayTask.add(task);
     }
 
@@ -47,6 +33,43 @@ public class TaskServices {
         for(Task task: arrayTask){
             System.out.println(task);
         }
+    }
+
+    public static void changeStatus(ArrayList<Task> arrayTask){
+        String title = Input.prompt("Enter a task to change status");
+        for(Task task: arrayTask){
+            if(title.equalsIgnoreCase(task.getTitle())){
+                task.setTaskMark(menuStatusChoose());
+                return;
+            }
+            else{
+                System.out.println("Error: Task not found");
+            }
+        }
+    }
+
+    public static TaskMark menuStatusChoose(){
+        TaskMark taskMark = null;
+        while(taskMark == null) {
+            System.out.println("1 -- Completed");
+            System.out.println("2 -- In progress");
+            System.out.println("3 -- Pending");
+            int value = Input.promptInt("Choose an a option");
+
+            switch (value) {
+                case 1 -> {
+                    return taskMark = TaskMark.COMPLETED;
+                }
+                case 2 -> {
+                    return taskMark = TaskMark.IN_PROGRESS;
+                }
+                case 3 -> {
+                    return taskMark = TaskMark.PENDING;
+                }
+                default -> System.out.println("Option is invalid");
+            }
+        }
+        return null;
     }
 
 

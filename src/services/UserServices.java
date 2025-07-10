@@ -13,7 +13,7 @@ public class UserServices {
         String name = Input.prompt("Enter a username");
         String description = Input.prompt("Enter a email");
         if(name.isEmpty() || description.isEmpty()){
-            System.out.println("Error, one or more fields are empty");
+            System.out.println("Error: one or more fields are empty");
             return;
         }
         UserRole role = null;
@@ -61,7 +61,8 @@ public class UserServices {
             System.out.println("2 -- show all users");
             System.out.println("3 -- create task");
             System.out.println("4 -- show all task");
-            System.out.println("5 -- Exit");
+            System.out.println("5 -- change status of task");
+            System.out.println("6 -- Exit");
             int input = Input.promptInt("choose an a option");
 
         switch (input){
@@ -69,7 +70,8 @@ public class UserServices {
             case 2 -> showAllUsers(arrayUser);
             case 3 -> TaskServices.createTask(arrayTask, arrayUser);
             case 4 -> TaskServices.showAllTasks(arrayTask);
-            case 5 -> System.exit(0);
+            case 5 -> TaskServices.changeStatus(arrayTask);
+            case 6 -> System.exit(0);
             default -> System.out.println("Option is invalid");
         }
 
